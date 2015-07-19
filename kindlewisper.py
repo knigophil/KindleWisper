@@ -63,7 +63,7 @@ class KindleButlerWorker:
             file.save_file(cover,directory,getcover,cloud)
             ui.root.quit()
             #
-            #next line removes progress bar window on Windows 8.1
+            #next line closes progress bar window on Windows 8.1
             #
             ui.root.withdraw()
 
