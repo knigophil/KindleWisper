@@ -11,9 +11,9 @@ Available [here](https://github.com/knigophil/KindleWisper/releases)
 
 #Dependencies
 
-    *Python 3.X
-    *[Pillow](http://pypi.python.org/pypi/Pillow/)
-    *[Psutil](https://pypi.python.org/pypi/psutil)
+    * Python 3.X
+    * [Pillow](http://pypi.python.org/pypi/Pillow)
+    * [Psutil](https://pypi.python.org/pypi/psutil)
     
 #How to run:
 
