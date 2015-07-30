@@ -1,21 +1,21 @@
-# KindleWisper
-
+KindleWisper
+============
 Sending Kindle books and optionally stamped covers to device via USB (based on **KindleButler version 0.1**).
 If cover is missing from the book KindleWisper creates default cover and stamps it with 
 author(s) name(s) and book title.
 
-# Windows exe
+## Windows exe
 
 Available [here](https://github.com/knigophil/KindleWisper/releases)
 
 
-#Dependencies
+##Dependencies
 
-    * Python 3.X
-    * [Pillow](http://pypi.python.org/pypi/Pillow)
-    * [Psutil](https://pypi.python.org/pypi/psutil)
+    - Python 3.X
+    - [Pillow](http://pypi.python.org/pypi/Pillow)
+    - [Psutil](https://pypi.python.org/pypi/psutil)
     
-#How to run:
+##How to run:
 
     kindlewisper.cmd [--input-file]<INPUT_FILE> [keys]
      or
@@ -44,7 +44,7 @@ Available [here](https://github.com/knigophil/KindleWisper/releases)
     -cl {yes, no}, --cloud {yes, no} 
         Process (add cover) to book on Kindle downloaded from cloud? yes or no
 
-#COPYRIGHT
+##COPYRIGHT
 
 Copyright (c )2015 KindleWisper is released under GNU General Public License. See LICENSE.txt for further details.
 This script includes and uses code from initial release of [KindleButler version 0.1](https://github.com/AcidWeb/KindleButler) by Pawel Jastrzebski.  
