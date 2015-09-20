@@ -28,22 +28,31 @@ Available [here](https://github.com/knigophil/KindleWisper/releases)
         Input file 
     -s SEQUENCE_NUMBER, --sequence-number SEQUENCE_NUMBER 
         A one- or two-digit number to stamp on the cover ("auto" for first one-two numeric characters of the file name) 
+        Default: if key -s is missing  no sequence number stamp
     -t TITLE, --title TITLE 
-        A text to stamp on the cover ("auto" for the title from the metainfo of the book) 
+        A text to stamp on the cover ("auto" for the title from the metainfo of the book)
+        Default: if -t is missing no title stamp 
     -a ASIN, --asin ASIN 
         A text to put into ASIN metainfo field 
     -p {top, bottom}, --position {top, bottom} 
         Position of the stamp 
+        Default bottom
     -m {pc, reader} --mode[pc, reader] 
-        Copy book either to PC or to e-reader 
+        Copy book either to PC or to e-reader
+        Default reader 
     -d DIRECTORY,--directory DIRECTORY 
         Places book to Kindle Documents subdirectory 
     -e {search, extract}, --getcover {search, extract} 
-        Method to obtain cover: Search or Extract 
+        Method to obtain cover: Search or Extract
+        Default search 
     -c 
         Window opens to select external cover 
     -cl {yes, no}, --cloud {yes, no} 
         Process (add cover) to book on Kindle downloaded from cloud? yes or no
+        Default no
+    -cs (pw,kv), --cover_size (pw,kv)
+        Cover size for Paperwite (pw) is 217x330 px or for Voyage (kv) 330x470 px
+        Default Paperwhite (pw)
 
 ##COPYRIGHT
 

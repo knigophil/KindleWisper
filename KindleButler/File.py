@@ -35,7 +35,7 @@ import shutil
 import textwrap
 
 class MOBIFile:
-    def __init__(self, path, kindle, config, progressbar,sequence_number,title,asin,position,mode,cloud):
+    def __init__(self, path, kindle, config, progressbar,sequence_number,title,asin,position,mode,cloud,cover_size):
         self.mode = mode
         self.config = config
         self.path = path
@@ -46,6 +46,7 @@ class MOBIFile:
         self.position = position
         self.write_thumb = True
         self.no_cover = False
+        self.cover_size = cover_size
         # Do not write cover to Kindle/PC if asin is specified
         if asin != None:
             self.write_thumb = False
@@ -83,7 +84,7 @@ class MOBIFile:
             if exception.errno != errno.EEXIST:
                 raise
 
-    def save_file(self,  cover,directory,getcover,cloud):
+    def save_file(self,  cover,directory,getcover,cloud, cover_size):
         if(self.mode=='reader'):
             #  need.cover means that directory system/thumbnails has been found on the Kindle (this is Kindle PW)
             if self.kindle.need_cover:
@@ -112,7 +113,7 @@ class MOBIFile:
                                 ready_cover = Image.open(path_to_cover)
                                 ready_cover = ready_cover.resize((217, 330), Image.ANTIALIAS)
                                 ready_cover = ready_cover.convert('L')
-                                self.txt2defaultcover(self.title, self.author, self.seqnumber, ready_cover, self.position)
+                                self.txt2defaultcover(self.title, self.author, self.seqnumber, ready_cover, self.position )
                     else: # extract cover
                         try:
                             # ready_cover = self.get_cover_image()
@@ -536,9 +537,10 @@ class MOBIFile:
                 imgnames.append(i)
             if len(imgnames)-1 == coverid:
                 cover = Image.open(BytesIO(data))
-                # cover.thumbnail((217, 330), Image.ANTIALIAS)
-                # cover.thumbnail((250, 400), Image.ANTIALIAS)
-                cover = cover.resize((217,330), Image.ANTIALIAS)
+                if self.cover_size=='pw':
+                    cover = cover.resize((217,330), Image.ANTIALIAS)
+                else:
+                    cover = cover.resize((330,470), Image.ANTIALIAS)
                 cover = cover.convert('L')
                 self.txt2img(self.title, self.seqnumber, cover, self.position)
                 return cover
