@@ -92,7 +92,10 @@ class MOBIFile:
                     try:
                         ready_cover = Image.open(cover)
                         # ready_cover.thumbnail((217, 330), Image.ANTIALIAS)
-                        ready_cover = ready_cover.resize((217, 330), Image.ANTIALIAS)
+                        if self.cover_size =='pw':
+                                ready_cover = ready_cover.resize((217, 330), Image.ANTIALIAS)
+                        else:
+                                ready_cover = ready_cover.resize((330, 470), Image.ANTIALIAS)
                         ready_cover = ready_cover.convert('L')
                         self.txt2img(self.title, self.seqnumber, ready_cover, self.position)
                     except:
@@ -111,7 +114,10 @@ class MOBIFile:
                                           butler_dir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
                                 path_to_cover = butler_dir + "\\default_banner.jpeg"
                                 ready_cover = Image.open(path_to_cover)
-                                ready_cover = ready_cover.resize((217, 330), Image.ANTIALIAS)
+                                if self.cover_size =='pw':
+                                       ready_cover = ready_cover.resize((217, 330), Image.ANTIALIAS)
+                                else:
+                                       ready_cover = ready_cover.resize((330, 470), Image.ANTIALIAS)
                                 ready_cover = ready_cover.convert('L')
                                 self.txt2defaultcover(self.title, self.author, self.seqnumber, ready_cover, self.position )
                     else: # extract cover
@@ -136,7 +142,10 @@ class MOBIFile:
                                           butler_dir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
                                 path_to_cover = butler_dir + "\\default_banner.jpeg"
                                 ready_cover = Image.open(path_to_cover)
-                                ready_cover = ready_cover.resize((217, 330), Image.ANTIALIAS)
+                                if self.cover_size =='pw':
+                                       ready_cover = ready_cover.resize((217, 330), Image.ANTIALIAS)
+                                else:
+                                       ready_cover = ready_cover.resize((330, 470), Image.ANTIALIAS)
                                 ready_cover = ready_cover.convert('L')
                                 self.txt2defaultcover(self.title, self.author, self.seqnumber, ready_cover, self.position)
                 if self.kindle.ssh:
@@ -222,7 +231,10 @@ class MOBIFile:
             if cover != '': # means that cover was imported from external file
                 try:
                     ready_cover = Image.open(cover)
-                    ready_cover = ready_cover.resize((217, 330), Image.ANTIALIAS)
+                    if self.cover_size =='pw':
+                             ready_cover = ready_cover.resize((217, 330), Image.ANTIALIAS)
+                    else:
+                             ready_cover = ready_cover.resize((330, 470), Image.ANTIALIAS)
                     ready_cover = ready_cover.convert('L')
                     self.txt2img(self.title, self.seqnumber, ready_cover, self.position)
                 except:
@@ -242,7 +254,10 @@ class MOBIFile:
                                           butler_dir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
                                 path_to_cover = butler_dir + "\\default_banner.jpeg"
                                 ready_cover = Image.open(path_to_cover)
-                                ready_cover = ready_cover.resize((217, 330), Image.ANTIALIAS)
+                                if self.cover_size =='pw':
+                                         ready_cover = ready_cover.resize((217, 330), Image.ANTIALIAS)
+                                else:
+                                         ready_cover = ready_cover.resize((330, 470), Image.ANTIALIAS)
                                 ready_cover = ready_cover.convert('L')
                                 self.txt2defaultcover(self.title, self.author, self.seqnumber, ready_cover, self.position)
 
@@ -253,7 +268,10 @@ class MOBIFile:
                         shutil.rmtree("tmpdir.$$$")
                         coverfile = 'images.$$$' + '\\' + self.infilename +'.cover' + '.jpeg'
                         ready_cover = Image.open(coverfile)
-                        ready_cover = ready_cover.resize((217, 330), Image.ANTIALIAS)
+                        if self.cover_size =='pw':
+                                ready_cover = ready_cover.resize((217, 330), Image.ANTIALIAS)
+                        else:
+                                ready_cover = ready_cover.resize((330, 470), Image.ANTIALIAS)
                         ready_cover = ready_cover.convert('L')
                         self.txt2img(self.title, self.seqnumber, ready_cover, self.position)
                     except:
@@ -268,7 +286,10 @@ class MOBIFile:
                                           butler_dir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
                                 path_to_cover = butler_dir + "\\default_banner.jpeg"
                                 ready_cover = Image.open(path_to_cover)
-                                ready_cover = ready_cover.resize((217, 330), Image.ANTIALIAS)
+                                if self.cover_size =='pw':
+                                         ready_cover = ready_cover.resize((217, 330), Image.ANTIALIAS)
+                                else:
+                                         ready_cover = ready_cover.resize((330, 470), Image.ANTIALIAS)
                                 ready_cover = ready_cover.convert('L')
                                 self.txt2defaultcover(self.title, self.author, self.seqnumber, ready_cover, self.position)
             if(self.write_thumb):
@@ -344,6 +365,7 @@ class MOBIFile:
             from PIL import Image, ImageDraw, ImageFont
             #font = 'PTC55F.ttf'
             font = 'FreeSansBold.ttf'
+
             font_size = 35 # sequence number font size
             try:
                 if sys.frozen or sys.importers:
@@ -462,13 +484,20 @@ class MOBIFile:
                 fnt2 = ImageFont.truetype(os.path.join(font_dir, font), font_size2)
                 text2 = title.upper()
                 if seqnum is not None:
-                    draw.line((xmask + 0.5*haxis, ymask, xmask + haxis + 0.7 * width, ymask),fill=bgcolor,width=int(1.4*haxis))
+                    if self.cover_size == "pw":
+                        draw.line((xmask + 0.5*haxis, ymask, xmask + haxis + 0.7 * width, ymask),fill=bgcolor,width=int(1.4*haxis))
+                        titlelength = 14
+                    else:
+                        draw.line((xmask + 0.5*haxis, ymask, xmask +1.6* haxis + 0.7 * width, ymask),fill=bgcolor,width=int(1.4*haxis))
+                        titlelength = 25
                     margin = xmask + haxis
-                    titlelength = 12
                 else:
                     draw.line(( 0, ymask, width, ymask),fill=bgcolor,width=int(1.4*haxis))
                     margin = 0.5*fnt2.getsize(text2)[1]
-                    titlelength = 18
+                    if self.cover_size == "pw":
+                        titlelength = 21
+                    else:
+                        titlelength = 32
                 textwidth2, textheight2 = fnt2.getsize(text2)
                 offset = ymask - 1.1*textheight2 if len(text2)<=20 else ymask - 0.7*textheight
                 #
