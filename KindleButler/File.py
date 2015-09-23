@@ -486,18 +486,18 @@ class MOBIFile:
                 if seqnum is not None:
                     if self.cover_size == "pw":
                         draw.line((xmask + 0.5*haxis, ymask, xmask + haxis + 0.7 * width, ymask),fill=bgcolor,width=int(1.4*haxis))
-                        titlelength = 14
+                        titlelength = 12
                     else:
                         draw.line((xmask + 0.5*haxis, ymask, xmask +1.6* haxis + 0.7 * width, ymask),fill=bgcolor,width=int(1.4*haxis))
-                        titlelength = 25
+                        titlelength = 22
                     margin = xmask + haxis
                 else:
                     draw.line(( 0, ymask, width, ymask),fill=bgcolor,width=int(1.4*haxis))
                     margin = 0.5*fnt2.getsize(text2)[1]
                     if self.cover_size == "pw":
-                        titlelength = 21
+                        titlelength = 18
                     else:
-                        titlelength = 32
+                        titlelength = 28
                 textwidth2, textheight2 = fnt2.getsize(text2)
                 offset = ymask - 1.1*textheight2 if len(text2)<=20 else ymask - 0.7*textheight
                 #
