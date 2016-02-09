@@ -86,7 +86,7 @@ if __name__ == '__main__':
     parser.add_argument('-c', '--cover', dest='custom_cover', action='store_true',help='Issue request for external cover')
     parser.add_argument('input_file', type=str, help='Input mobi/azw3 book' )
     parser.add_argument('-s', '--sequence-number', help='A number to stamp on the cover ("auto" for first one-two numeric characters of the name of the file)')
-    parser.add_argument('-t', '--title', help='A text to stamp on the cover ("auto" for the title from the metainfo of the book)')
+    parser.add_argument('-t', '--title', default=None, help='A text to stamp on the cover ("auto" for the title from the metainfo of the book)')
     parser.add_argument('-a', '--asin', help='A text to put into ASIN metainfo field')
     parser.add_argument('-p', '--position', choices=['top', 'bottom'], default='bottom', help='Position of the stamp')
     parser.add_argument('-m', '--mode', choices=['pc', 'reader'], default='reader', help='Mode of operation: Write files to PC/to Paperwhite')

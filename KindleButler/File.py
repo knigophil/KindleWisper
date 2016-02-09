@@ -60,7 +60,8 @@ class MOBIFile:
         mhlst = [KindleUnpack.MobiHeader(section, 0)]
         mh = mhlst[0]
         metadata = mh.getmetadata()
-        self.title = self.get_booktitle2()
+        if self.title != None:
+            self.title = self.get_booktitle2()
         self.author = self.get_bookauthor()
         self.seqnumber = self.get_seqnumber(self.infilename, self.seqnumber)
         self.check_file()
